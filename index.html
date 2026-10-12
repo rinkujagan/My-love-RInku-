@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff0f5">
+<title>RINKU ♡ JAGAN — Our Little World</title>
+
+<style>
+:root{
+  --pink:#f4a8c5;
+  --deep:#b84978;
+  --rose:#e97da8;
+  --cream:#fff9fb;
+  --ink:#61364d;
+  --soft:#ffe5ef;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:Georgia,"Times New Roman",serif;
+  overflow-x:hidden;
+}
+button,a{-webkit-tap-highlight-color:transparent}
+a{color:inherit}
+button{font:inherit}
+::selection{background:#f5bfd3;color:#71334f}
+
+#petals{
+  position:fixed;inset:0;pointer-events:none;
+  overflow:hidden;z-index:10
+}
+.petal{
+  position:absolute;top:-30px;
+  color:#ed8eb4;opacity:.5;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  to{transform:translate3d(45px,110vh,0) rotate(400deg)}
+}
+nav{
+  position:sticky;top:0;z-index:20;
+  display:flex;justify-content:space-between;align-items:center;
+  gap:10px;padding:13px 6%;
+  background:#fff9fbeb;backdrop-filter:blur(14px);
+  border-bottom:1px solid #f6dce7;
+}
+.brand{font-size:18px;color:#b84978;font-weight:bold}
+.navlinks{display:flex;gap:16px;flex-wrap:wrap}
+.navlinks a{
+  font:12px Arial,sans-serif;text-decoration:none;color:#87566d
+}
+.hero{
+  min-height:88svh;position:relative;overflow:hidden;
+  display:grid;place-items:center;text-align:center;
+  padding:70px 20px 90px;
+  background:
+    radial-gradient(ellipse at 50% 30%,#fff 0%,#fff0f6 45%,#f9dce8 100%);
+}
+.hero:before,.hero:after{
+  content:"";position:absolute;border-radius:50%;
+  width:270px;height:270px;background:#fff8;
+  filter:blur(4px);animation:float 8s ease-in-out infinite;
+}
+.hero:before{top:-100px;left:-100px}
+.hero:after{bottom:-120px;right:-80px;animation-delay:-4s}
+@keyframes float{
+  50%{transform:translate(20px,-20px) scale(1.08)}
+}
+.hero-inner{position:relative;z-index:1;max-width:780px}
+.eyebrow{
+  font:11px Arial,sans-serif;letter-spacing:4px;
+  text-transform:uppercase;color:#b84978
+}
+.hero h1{
+  margin:18px 0 8px;font-weight:normal;
+  font-size:clamp(48px,12vw,100px);line-height:1.02;
+  color:#b84978;text-shadow:0 4px 0 #fff,0 12px 35px #dc8cad55;
+}
+.hero h1 span{color:#ec8eb3;display:block;font-style:italic}
+.hero p{
+  max-width:540px;margin:22px auto;
+  font-size:clamp(17px,3.6vw,22px);line-height:1.8;color:#80546a
+}
+.pill{
+  display:inline-block;padding:14px 24px;border-radius:99px;
+  background:linear-gradient(135deg,#e986ae,#c95d8c);
+  color:white;text-decoration:none;border:0;
+  box-shadow:0 8px 24px #c95d8c35;
+  transition:transform .25s,box-shadow .25s;cursor:pointer;
+}
+.pill:hover{transform:translateY(-3px);box-shadow:0 12px 30px #c95d8c55}
+.heartfloat{
+  display:inline-block;color:#e777a4;
+  animation:heartbeat 1.4s infinite;
+}
+@keyframes heartbeat{
+  0%,100%{transform:scale(1)}
+  15%{transform:scale(1.18)}
+  30%{transform:scale(1)}
+  45%{transform:scale(1.12)}
+}
+section{padding:85px 20px}
+.wrap{width:min(100%,950px);margin:auto}
+.section-head{text-align:center;margin-bottom:38px}
+.section-head h2{
+  font-size:clamp(33px,7vw,53px);font-weight:normal;
+  color:#b84978;margin:12px 0;
+}
+.section-head p{line-height:1.8;color:#94667c}
+.flower{font-size:26px;display:block;margin-bottom:12px}
+.paper{
+  padding:clamp(24px,6vw,55px);
+  border:1px solid #f4d6e2;border-radius:25px;
+  background:linear-gradient(145deg,#fff,#fff5f9);
+  box-shadow:0 15px 50px #b94b7610;
+}
+.letter{
+  font-size:clamp(18px,3.5vw,22px);
+  line-height:2;color:#80546a;white-space:pre-line
+}
+.signature{margin-top:28px;color:#b84978;font-style:italic;font-size:22px}
+#heart-section{background:linear-gradient(180deg,#fff5f9,#ffeaf2)}
+.heartbox{width:min(100%,550px);margin:auto;text-align:center}
+#loveHeart{width:100%;height:auto;overflow:visible}
+.heart-words{
+  font:bold 10px Georgia,serif;fill:#c94e83;
+}
+#heartReveal{animation:heartDraw 6s ease-in-out forwards}
+@keyframes heartDraw{
+  from{height:0}
+  to{height:450px}
+}
+.heart-caption{font-size:19px;line-height:1.8;color:#a75077}
+.small-note{font-size:13px;color:#b67c96;line-height:1.8}
+
+/* ANIMATED STORY */
+#story{background:#fffafc}
+.story-frame{
+  width:min(100%,700px);margin:auto;
+  border:7px solid white;border-radius:25px;overflow:hidden;
+  background:#e8dff5;box-shadow:0 15px 45px #a14c7520;
+}
+#storySvg{width:100%;height:auto;display:block}
+.scene{
+  opacity:0;animation:sceneCycle 30s infinite;
+}
+#proposalScene{animation-delay:0s}
+#roseScene{animation-delay:0s}
+#cabinScene{animation-delay:0s}
+@keyframes sceneCycle{
+  0%{opacity:0}
+  4%{opacity:1}
+  29%{opacity:1}
+  34%{opacity:0}
+  100%{opacity:0}
+}
+#proposalScene{animation-name:proposalCycle}
+@keyframes proposalCycle{
+  0%,2%{opacity:0}
+  5%,30%{opacity:1}
+  34%,100%{opacity:0}
+}
+#roseScene{animation-name:roseCycle}
+@keyframes roseCycle{
+  0%,33%{opacity:0}
+  37%,62%{opacity:1}
+  66%,100%{opacity:0}
+}
+#cabinScene{animation-name:cabinCycle}
+@keyframes cabinCycle{
+  0%,65%{opacity:0}
+  69%,95%{opacity:1}
+  100%{opacity:0}
+}
+.sway{transform-box:fill-box;transform-origin:center;animation:sway 3s ease-in-out infinite}
+@keyframes sway{50%{transform:rotate(3deg)}}
+.breath{animation:breath 3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes breath{50%{transform:translateY(-3px)}}
+.story-label{
+  padding:18px;text-align:center;background:#fff5f9;
+  font-size:17px;color:#9b5072;line-height:1.7
+}
+.story-label small{display:block;font:11px Arial,sans-serif;letter-spacing:2px;color:#bf83a0;margin-top:8px}
+.story-hint{text-align:center;font-size:13px;line-height:1.8;color:#a37489;margin-top:15px}
+
+/* NOTES */
+#notes{background:#fff0f6}
+.note-grid,.shop-grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px
+}
+.note-card{
+  background:#fff;border:1px solid #f5d5e3;border-radius:20px;
+  padding:22px 17px;text-align:center;
+  box-shadow:0 8px 25px #a8497110;
+  transition:transform .25s
+}
+.note-card:hover{transform:translateY(-5px) rotate(-1deg)}
+.note-card .icon{font-size:27px}
+.note-card h3{font-size:20px;font-weight:normal;color:#b84978}
+.note-card p{font-size:15px;line-height:1.8;color:#93637a}
+#loveNote{background:#fffafc}
+#gift-shop{background:linear-gradient(#fffafc,#ffeaf2)}
+.gift{
+  padding:23px 15px;text-align:center;background:#fff;
+  border:1px solid #f3d2e0;border-radius:20px;
+}
+.gift .icon{font-size:38px}
+.gift h3{color:#b84978;font-size:19px;font-weight:normal}
+.gift p{font-size:14px;line-height:1.7;color:#94667c}
+.gift button{font-size:13px;padding:11px 15px}
+#giftMessage{
+  margin:25px auto 0;max-width:620px;min-height:65px;
+  text-align:center;line-height:1.9;color:#a74e77;
+  font-size:18px;padding:16px;border-radius:18px;
+  background:#fff7fa;border:1px dashed #edb7ce;
+}
+.final{
+  text-align:center;padding:100px 20px;
+  background:radial-gradient(ellipse at center,#ffe0ec,#fff5f9 65%);
+}
+.final h2{
+  font-size:clamp(42px,10vw,80px);font-weight:normal;
+  color:#b84978;margin:18px 0
+}
+.final p{font-size:19px;line-height:1.9;color:#80546a}
+footer{
+  text-align:center;padding:25px;background:#fff7fa;
+  color:#b27c96;font:11px Arial,sans-serif;letter-spacing:2px
+}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .8s,transform .8s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:620px){
+  nav{padding:12px 14px}
+  .navlinks{gap:10px}
+  .navlinks a{font-size:11px}
+  .brand{font-size:15px}
+  section{padding:65px 16px}
+  .note-grid,.shop-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .note-card{padding:19px 12px}
+  .paper{border-radius:20px}
+}
+@media(max-width:380px){
+  .note-grid,.shop-grid{grid-template-columns:1fr}
+  .navlinks a:nth-child(2){display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+
+<body>
+<div id="petals" aria-hidden="true"></div>
+
+<nav>
+  <div class="brand">♡ RINKU × JAGAN</div>
+  <div class="navlinks">
+    <a href="#letter">Love letter</a>
+    <a href="#story">Our story</a>
+    <a href="#notes">Love notes</a>
+    <a href="#gift-shop">Gift corner</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">A little world made just for you</div>
+    <h1>My Rinku<span>My favourite person</span></h1>
+    <p>
+      If my heart could build a home, it would be a little place
+      filled with your laughter, soft roses, warm hugs and you.
+    </p>
+    <a class="pill" href="#letter">Open your love letter ♡</a>
+    <p style="font-size:27px;margin-top:30px">
+      <span class="heartfloat">♥</span>
+      <span class="heartfloat" style="animation-delay:.2s">♥</span>
+      <span class="heartfloat" style="animation-delay:.4s">♥</span>
+    </p>
+  </div>
+</header>
+
+<section id="letter">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <span class="flower">🌷</span>
+      <div class="eyebrow">From my heart to yours</div>
+      <h2>A Letter For Rinku</h2>
+      <p>Some feelings deserve their own little page.</p>
+    </div>
+    <div class="paper letter">My dearest Rinku,
+
+Kabhi-kabhi sochta hoon ki tum meri life mein aakar kitni saari ordinary cheezon ko special bana deti ho. Tumhari baatein, tumhari smile aur tumhara chhota sa attention bhi mere din ko beautiful bana sakta hai.
+
+Main tumse har din perfect hone ka promise nahi karta. Lekin main ye zaroor chahta hoon ki hum ek doosre ko samjhein, ek doosre ki baat sunein aur difficult days mein bhi ek doosre ka haath na chhodein.
+
+Tumhe hamesha khush rakhna meri wish hai, aur jab tum khush na ho, toh tumhare paas baithkar tumhari baat sunna bhi mere liye pyaar hai.
+
+Mujhe tumhare saath chhoti-chhoti khushiyan collect karni hain—random conversations, silly jokes, peaceful evenings aur woh moments jahan kuch khaas karna zaroori hi na ho.
+
+Thank you for being you, Rinku. Tum mere liye bahut special ho. ❤️
+
+<div class="signature">Forever with love, JAGAN ♡</div></div>
+  </div>
+</section>
+
+<section id="heart-section">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <span class="flower">💗</span>
+      <div class="eyebrow">One heart, one favourite person</div>
+      <h2>Words From My Heart</h2>
+      <p>Watch the words draw a heart, just for you.</p>
+    </div>
+    <div class="heartbox">
+      <svg id="loveHeart" viewBox="0 0 500 450" role="img" aria-label="I love you Rinku heart animation">
+        <defs>
+          <path id="heartPath" d="M250 405 C210 365 48 260 48 155 C48 65 157 38 218 101 C237 121 247 138 250 148 C253 138 263 121 282 101 C343 38 452 65 452 155 C452 260 290 365 250 405 Z"/>
+          <clipPath id="heartClip"><use href="#heartPath"/></clipPath>
+          <linearGradient id="heartPink" x1="0" y1="0" x2="1" y2="1">
+            <stop stop-color="#ffb5d4"/>
+            <stop offset="1" stop-color="#b84978"/>
+          </linearGradient>
+        </defs>
+        <use href="#heartPath" fill="#fff7fb" stroke="#e9a1bf" stroke-width="2"/>
+        <g clip-path="url(#heartClip)" id="heartText" fill="url(#heartPink)" font-size="12" font-family="Georgia" font-weight="bold" text-anchor="middle"></g>
+        <rect id="heartWipe" x="0" y="0" width="500" height="0" fill="#fff7fb" clip-path="url(#heartClip)" opacity=".98"/>
+        <use href="#heartPath" fill="none" stroke="#e78db2" stroke-width="2"/>
+      </svg>
+      <p class="heart-caption">I LOVE YOU, RINKU <span class="heartfloat">♥</span></p>
+      <p class="small-note">Every little word carries a little piece of my love.</p>
+      <button class="pill" id="heartReplay">Draw my heart again ♡</button>
+    </div>
+  </div>
+</section>
+
+<section id="story">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <span class="flower">🏔️</span>
+      <div class="eyebrow">A tiny animated daydream</div>
+      <h2>Our Little Fairytale</h2>
+      <p>A rose, a question, and a quiet home in the mountains.</p>
+    </div>
+
+    <div class="story-frame">
+      <svg id="storySvg" viewBox="0 0 600 420" role="img" aria-label="Animated romantic illustrated scenes of a proposal and a mountain cottage">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop stop-color="#f8cce0"/><stop offset="1" stop-color="#fff1dc"/>
+          </linearGradient>
+          <linearGradient id="mountain" x1="0" y1="0" x2="0" y2="1">
+            <stop stop-color="#a6b9b4"/><stop offset="1" stop-color="#6f9388"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Scene 1: proposal beneath the sunset -->
+        <g id="proposalScene" class="scene">
+          <rect width="600" height="420" fill="url(#sky)"/>
+          <circle cx="475" cy="83" r="39" fill="#fff4c7"/>
+          <path d="M0 240 L100 100 175 220 290 70 420 240 510 125 600 235 V420 H0Z" fill="#d3b8d0"/>
+          <path d="M0 285 L115 175 235 300 365 155 505 285 600 220 V420 H0Z" fill="url(#mountain)"/>
+          <path d="M0 330 Q150 270 300 330 T600 315 V420 H0Z" fill="#b7c9a5"/>
+          <path d="M0 370 Q200 330 600 370 V420 H0Z" fill="#809b7c"/>
+          <g fill="#fff5f9">
+            <circle cx="90" cy="76" r="3"/><circle cx="140" cy="55" r="2"/>
+            <circle cx="225" cy="90" r="2.5"/><circle cx="350" cy="55" r="2"/>
+          </g>
+
+          <!-- Jagan, kneeling -->
+          <g class="breath">
+            <circle cx="265" cy="267" r="18" fill="#efbd9e"/>
+            <path d="M247 263 Q244 240 267 245 Q286 248 281 263" fill="#493b4a"/>
+            <path d="M250 287 Q278 280 286 305 L273 337 239 337 235 307Z" fill="#7c759f"/>
+            <path d="M245 332 L220 348 252 351 274 340" fill="#4e4b6c"/>
+            <path d="M250 299 L221 317 208 305" stroke="#efbd9e" stroke-width="12" fill="none" stroke-linecap="round"/>
+            <path d="M272 301 L289 315" stroke="#efbd9e" stroke-width="10" fill="none" stroke-linecap="round"/>
+            <path d="M226 350 L205 353" stroke="#554c68" stroke-width="12" stroke-linecap="round"/>
+          </g>
+
+          <!-- Rinku -->
+          <g class="breath">
+            <circle cx="342" cy="247" r="18" fill="#f4c6aa"/>
+            <path d="M322 248 Q317 218 344 224 Q364 226 361 253 L356 241 326 239Z" fill="#493346"/>
+            <path d="M323 267 Q344 257 362 273 L377 327 309 327Z" fill="#f1a3c1"/>
+            <path d="M325 280 L306 301 287 298" stroke="#f4c6aa" stroke-width="10" fill="none" stroke-linecap="round"/>
+            <path d="M358 280 L370 300" stroke="#f4c6aa" stroke-width="10" fill="none" stroke-linecap="round"/>
+            <path d="M322 324 L318 352 M360 324 L366 352" stroke="#e8b1a6" stroke-width="12" stroke-linecap="round"/>
+          </g>
+
+          <!-- White rose -->
+          <g class="sway">
+            <path d="M288 314 L305 275" stroke="#4e8861" stroke-width="3"/>
+            <path d="M299 294 Q284 283 289 278 Q303 282 302 290" fill="#6c9e70"/>
+            <g fill="#fffafc" stroke="#eabbd0" stroke-width="1">
+              <ellipse cx="304" cy="270" rx="8" ry="12"/>
+              <ellipse cx="296" cy="268" rx="8" ry="10" transform="rotate(-45 296 268)"/>
+              <ellipse cx="311" cy="266" rx="8" ry="10" transform="rotate(45 311 266)"/>
+              <circle cx="304" cy="269" r="5" fill="#f3d8a8"/>
+            </g>
+          </g>
+          <text x="300" y="390" text-anchor="middle" fill="#85536f" font-size="21" font-family="Georgia">One rose. One question. Two hearts. ♡</text>
+        </g>
+
+        <!-- Scene 2: white rose close-up -->
+        <g id="roseScene" class="scene">
+          <rect width="600" height="420" fill="url(#sky)"/>
+          <circle cx="300" cy="170" r="110" fill="#fff9fb" opacity=".55"/>
+          <g class="sway" transform="translate(300 180)">
+            <path d="M0 30 Q-8 90 -5 175" stroke="#578363" stroke-width="6" fill="none"/>
+            <path d="M-3 105 Q-70 65 -64 100 Q-30 135 -3 118" fill="#78a879"/>
+            <path d="M-4 135 Q40 85 54 118 Q33 148 -4 145" fill="#65946b"/>
+            <g fill="#fff" stroke="#e4b3cb" stroke-width="2">
+              <ellipse cx="0" cy="-10" rx="37" ry="55"/>
+              <ellipse cx="-32" cy="-24" rx="29" ry="45" transform="rotate(-42 -32 -24)"/>
+              <ellipse cx="32" cy="-25" rx="29" ry="45" transform="rotate(42 32 -25)"/>
+              <ellipse cx="-26" cy="10" rx="27" ry="38" transform="rotate(-40 -26 10)"/>
+              <ellipse cx="26" cy="10" rx="27" ry="38" transform="rotate(40 26 10)"/>
+            </g>
+            <circle cy="-4" r="17" fill="#f1d8a8"/>
+          </g>
+          <g fill="#e7a0c2">
+            <path d="M100 110 q10 -17 20 0 q-10 20 -20 0"/>
+            <path d="M460 90 q10 -17 20 0 q-10 20 -20 0"/>
+            <path d="M135 210 q10 -17 20 0 q-10 20 -20 0"/>
+            <path d="M440 245 q10 -17 20 0 q-10 20 -20 0"/>
+          </g>
+          <text x="300" y="325" text-anchor="middle" fill="#a34f77" font-size="25" font-family="Georgia">For my favourite girl, Rinku</text>
+          <text x="300" y="361" text-anchor="middle" fill="#a34f77" font-size="19" font-family="Georgia">A little flower for a love that grows ♡</text>
+        </g>
+
+        <!-- Scene 3: cottage in the mountains -->
+        <g id="cabinScene" class="scene">
+          <rect width="600" height="420" fill="#d9e8e9"/>
+          <circle cx="470" cy="68" r="31" fill="#fff6d8"/>
+          <path d="M0 250 L100 100 180 220 310 70 435 245 520 115 600 220 V420 H0Z" fill="#b5c9d0"/>
+          <path d="M0 300 L145 180 240 285 380 155 500 280 600 200 V420 H0Z" fill="#829f9b"/>
+          <path d="M0 350 Q130 310 265 350 T600 330 V420 H0Z" fill="#b2c9a3"/>
+          <path d="M185 245 L300 155 420 245Z" fill="#936c78"/>
+          <rect x="205" y="240" width="190" height="120" rx="3" fill="#e7c9ac"/>
+          <path d="M190 247 L300 165 410 247Z" fill="#9a6577"/>
+          <rect x="278" y="286" width="42" height="74" fill="#946c66"/>
+          <rect x="224" y="265" width="37" height="36" fill="#d9f2ef" stroke="#9d6f7d" stroke-width="5"/>
+          <rect x="339" y="265" width="37" height="36" fill="#d9f2ef" stroke="#9d6f7d" stroke-width="5"/>
+          <path d="M242 264 V302 M224 283 H261 M357 264 V302 M339 283 H376" stroke="#a67b88" stroke-width="3"/>
+
+          <!-- Warm window glow -->
+          <rect x="225" y="266" width="35" height="34" fill="#ffe6a7" opacity=".65"/>
+          <rect x="340" y="266" width="35" height="34" fill="#ffe6a7" opacity=".65"/>
+
+          <!-- Two people reading together on the porch -->
+          <g class="breath">
+            <circle cx="260" cy="326" r="12" fill="#efbd9e"/>
+            <path d="M247 326 Q244 307 262 310 Q274 314 271 329" fill="#513b4b"/>
+            <path d="M249 340 L244 361 273 361 271 340Z" fill="#7e7ba0"/>
+            <circle cx="328" cy="326" r="12" fill="#f1c4a9"/>
+            <path d="M315 326 Q313 306 330 311 Q344 314 340 329" fill="#493346"/>
+            <path d="M316 340 L311 361 340 361 339 340Z" fill="#e9a1bf"/>
+            <path d="M268 345 L293 350 M317 345 L293 350" stroke="#efbd9e" stroke-width="6" stroke-linecap="round"/>
+            <path d="M275 339 L294 334 313 339 294 350Z" fill="#fff5d9" stroke="#b87990" stroke-width="2"/>
+            <path d="M294 334 V350" stroke="#b87990" stroke-width="2"/>
+          </g>
+          <text x="300" y="394" text-anchor="middle" fill="#486b69" font-size="19" font-family="Georgia">A quiet home, a book, and you. ♡</text>
+        </g>
+      </svg>
+      <div class="story-label">
+        A little dream I would love to share with you.
+        <small>PROPOSE · GIVE A ROSE · READ TOGETHER</small>
+      </div>
+    </div>
+    <p class="story-hint">The illustrated scenes cycle automatically. This is an animated drawing, not a recorded anime video.</p>
+  </div>
+</section>
+
+<section id="notes">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <span class="flower">💌</span>
+      <div class="eyebrow">Little reminders for you</div>
+      <h2>Open When You Need Love</h2>
+      <p>Three little notes, each with a whole lot of affection.</p>
+    </div>
+    <div class="note-grid">
+      <article class="note-card">
+        <div class="icon">🌷</div>
+        <h3>When you feel low</h3>
+        <p>Rinku, you don't have to be cheerful every day. You deserve love on your quiet days too. I'm here to listen. ♡</p>
+      </article>
+      <article class="note-card">
+        <div class="icon">☁️</div>
+        <h3>When you overthink</h3>
+        <p>Take a breath, my love. We can talk things through slowly. You don't have to figure everything out alone. 💗</p>
+      </article>
+      <article class="note-card">
+        <div class="icon">🌙</div>
+        <h3>Before you sleep</h3>
+        <p>I hope your last thought tonight is gentle, your heart feels peaceful, and tomorrow brings you a reason to smile. ✨</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="loveNote">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <span class="flower">🌹</span>
+      <div class="eyebrow">A tiny poem, only for you</div>
+      <h2>Rinku, My Rose</h2>
+    </div>
+    <div class="paper letter">
+Tumhari muskurahat subah ki roshni jaisi,
+tumhari baatein halki baarish jaisi.
+
+Tum paas ho toh pal bhi pyaare lagte hain,
+tumhari khushi se mere din saare sajte hain.
+
+Main chaand taare laane ka vaada nahi karta,
+par tumhari baat sunne se kabhi inkaar nahi karta.
+
+Har din tumhe phir se choose karna chahta hoon,
+har chhoti khushi mein tumhara saath chahta hoon.
+
+RINKU, tum meri favourite si feeling ho,
+aur JAGAN ke dil ki sabse pyaari si reason ho. ❤️
+    </div>
+  </div>
+</section>
+
+<section id="gift-shop">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <span class="flower">🎁</span>
+      <div class="eyebrow">The little love shop</div>
+      <h2>Choose Your Love Gift</h2>
+      <p>No price tags here—just a few gifts made of feelings.</p>
+    </div>
+    <div class="shop-grid">
+      <article class="gift">
+        <div class="icon">🌹</div>
+        <h3>A White Rose</h3>
+        <p>For your gentle heart and beautiful soul.</p>
+        <button class="pill gift-btn" data-message="🌹 One white rose for Rinku: may your days be as soft and lovely as its petals. — Jagan">Choose gift</button>
+      </article>
+      <article class="gift">
+        <div class="icon">🧸</div>
+        <h3>A Warm Hug</h3>
+        <p>A little reminder that you are loved.</p>
+        <button class="pill gift-btn" data-message="🧸 Sending Rinku the biggest, coziest virtual hug. Stay here for a moment; you are cherished. — Jagan">Choose gift</button>
+      </article>
+      <article class="gift">
+        <div class="icon">💌</div>
+        <h3>A Love Note</h3>
+        <p>One more tiny message from my heart.</p>
+        <button class="pill gift-btn" data-message="💌 Dear Rinku, if I could give you one thing, it would be the chance to see yourself through my eyes: precious, lovely, and deeply appreciated. — Jagan">Choose gift</button>
+      </article>
+      <article class="gift">
+        <div class="icon">🍫</div>
+        <h3>Sweet Treat</h3>
+        <p>Because you deserve little sweet moments.</p>
+        <button class="pill gift-btn" data-message="🍫 A virtual chocolate for my sweet Rinku! Redeem it for a real treat together someday. ❤️">Choose gift</button>
+      </article>
+      <article class="gift">
+        <div class="icon">📚</div>
+        <h3>Our Book Nook</h3>
+        <p>A peaceful evening and a story together.</p>
+        <button class="pill gift-btn" data-message="📚 One cozy mountain evening, two books, a warm blanket, and no rush to be anywhere else. That sounds perfect with you.">Choose gift</button>
+      </article>
+      <article class="gift">
+        <div class="icon">✨</div>
+        <h3>Forever Promise</h3>
+        <p>A promise to listen, learn and keep choosing us.</p>
+        <button class="pill gift-btn" data-message="✨ My promise isn't to be perfect. It's to keep communicating, respect your heart, and keep making space for both of us to grow. — Jagan">Choose gift</button>
+      </article>
+    </div>
+    <div id="giftMessage" aria-live="polite">Your chosen gift note will appear here. 💗</div>
+    <p class="story-hint">This is a virtual gift corner, not a real checkout or shopping payment system.</p>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap reveal">
+    <div class="heartfloat" style="font-size:44px">♥</div>
+    <div class="eyebrow">One last thing, my love</div>
+    <h2>RINKU ♡</h2>
+    <p>
+      Out of all the little things this world has to offer,<br>
+      I am so glad I get to love you.<br><br>
+      Not only on the beautiful days,<br>
+      but on the ordinary ones too.
+    </p>
+    <div style="font-size:24px;color:#bd5682;margin:30px">I LOVE YOU ❤️</div>
+    <p style="font-style:italic">Always with love, JAGAN</p>
+    <a class="pill" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to our little world ↑</a>
+  </div>
+</section>
+
+<footer>MADE WITH LOVE ♡ RINKU × JAGAN</footer>
+
+<script>
+/* Floating petals */
+const petalBox=document.getElementById("petals");
+for(let i=0;i<18;i++){
+  const p=document.createElement("span");
+  p.className="petal";
+  p.textContent=["✿","❀","♡","🌸"][i%4];
+  p.style.left=Math.random()*100+"%";
+  p.style.animationDuration=(12+Math.random()*15)+"s";
+  p.style.animationDelay=(-Math.random()*25)+"s";
+  p.style.fontSize=(12+Math.random()*13)+"px";
+  petalBox.appendChild(p);
+}
+
+/* Scroll reveals */
+const revealObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("visible");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+},{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>revealObserver.observe(el));
+
+/* Text heart: repeated words clipped to the real heart shape */
+const heartNS="http://www.w3.org/2000/svg";
+const heartText=document.getElementById("heartText");
+for(let y=45;y<420;y+=15){
+  for(let x=0;x<=500;x+=120){
+    const t=document.createElementNS(heartNS,"text");
+    t.setAttribute("x",x+60);
+    t.setAttribute("y",y);
+    t.textContent="I LOVE YOU RINKU ♥";
+    heartText.appendChild(t);
+  }
+}
+const heartWipe=document.getElementById("heartWipe");
+let heartStart=null,heartRAF=null;
+function heartAnimate(time){
+  if(heartStart===null)heartStart=time;
+  const progress=Math.min((time-heartStart)/5500,1);
+  heartWipe.setAttribute("height",450*progress);
+  if(progress<1)heartRAF=requestAnimationFrame(heartAnimate);
+}
+function replayHeart(){
+  if(heartRAF)cancelAnimationFrame(heartRAF);
+  heartStart=null;
+  heartWipe.setAttribute("height",0);
+  heartRAF=requestAnimationFrame(heartAnimate);
+}
+document.getElementById("heartReplay").addEventListener("click",replayHeart);
+replayHeart();
+
+/* Interactive virtual gifts */
+document.querySelectorAll(".gift-btn").forEach(button=>{
+  button.addEventListener("click",()=>{
+    document.getElementById("giftMessage").textContent=button.dataset.message;
+    document.getElementById("giftMessage").scrollIntoView({
+      behavior:"smooth",block:"nearest"
+    });
+  });
+});
+</script>
+</body>
+</html>
